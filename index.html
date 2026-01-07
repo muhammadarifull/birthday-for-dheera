@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday My Jaan 💖</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* 🎥 VIDEO BG */
+video{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+filter:brightness(.65);
+}
+
+/* Overlay */
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff9a9eaa,#fad0c4aa);
+z-index:-1;
+}
+
+/* 🔐 LOCK */
+#lock{
+position:fixed;
+inset:0;
+background:#000c;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+z-index:99;
+}
+#lock input,#lock button{
+padding:12px;
+border-radius:10px;
+border:none;
+margin-top:10px;
+font-size:1rem;
+}
+#lock button{background:#ff3366;color:white}
+
+/* CARD */
+.card{
+background:rgba(255,255,255,.3);
+backdrop-filter:blur(10px);
+border-radius:22px;
+padding:30px;
+text-align:center;
+width:90%;
+max-width:520px;
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+animation:pop 1s ease;
+}
+
+h1{
+color:#ff3366;
+font-size:2.4rem;
+animation:glow 2s infinite alternate;
+}
+
+img{
+width:120px;height:120px;
+border-radius:50%;
+border:4px solid white;
+object-fit:cover;
+margin:12px 0;
+}
+
+/* 🎂 CAKE */
+.cake{
+font-size:60px;
+cursor:pointer;
+animation:wiggle 2s infinite;
+}
+.candle-off{opacity:.3}
+
+.typing{
+white-space:pre-line;
+font-size:1.1rem;
+color:#222;
+min-height:220px;
+margin-top:10px;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:#ff3366;
+color:white;
+font-size:1rem;
+}
+
+footer{margin-top:10px;color:#333}
+
+/* ✨ DUA */
+.dua{
+position:absolute;
+font-size:18px;
+color:white;
+animation:rise 6s linear infinite;
+opacity:.8;
+}
+
+/* 💖 HEARTS */
+.heart{
+position:absolute;
+font-size:22px;
+animation:float 6s linear infinite;
+opacity:.8;
+}
+
+/* 🎆 FIRE */
+.fire{
+position:absolute;
+width:10px;height:10px;
+background:white;border-radius:50%;
+animation:boom .6s ease-out forwards;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0)}
+100%{transform:translateY(-10vh) scale(1)}
+}
+@keyframes rise{
+0%{transform:translateY(100vh);opacity:0}
+100%{transform:translateY(-10vh);opacity:1}
+}
+@keyframes pop{
+from{transform:scale(.6);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+@keyframes glow{
+from{text-shadow:0 0 10px #ff5f8a}
+to{text-shadow:0 0 25px #ff3366}
+}
+@keyframes boom{
+to{transform:scale(5);opacity:0}
+}
+@keyframes wiggle{
+0%,100%{transform:rotate(0)}
+50%{transform:rotate(5deg)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎥 BACKGROUND VIDEO -->
+<video autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-couple-walking-on-the-beach-9710/1080p.mp4">
+</video>
+<div class="overlay"></div>
+
+<!-- 🔐 LOCK -->
+<div id="lock">
+<h2>Only for Dheera 💖</h2>
+<p>Hint: What I call you 😉</p>
+<input id="pass" type="password" placeholder="Enter password">
+<button onclick="unlock()">Enter</button>
+</div>
+
+<!-- 🎶 MUSIC -->
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_48bfbfa1c7.mp3">
+</audio>
+
+<script>
+/* Hearts */
+for(let i=0;i<25;i++){
+let h=document.createElement("div");
+h.innerHTML="💖";
+h.className="heart";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(Math.random()*3+4)+"s";
+document.body.appendChild(h);
+}
+/* Dua */
+for(let i=0;i<12;i++){
+let d=document.createElement("div");
+d.innerHTML="🤲 اللهم احفظها";
+d.className="dua";
+d.style.left=Math.random()*100+"vw";
+d.style.animationDuration=(Math.random()*4+6)+"s";
+document.body.appendChild(d);
+}
+</script>
+
+<div class="card" onclick="playMusic();fire(event)">
+<h1>🎉 Happy Birthday Dheera 🎂</h1>
+
+<img src="https://i.imgur.com/8Km9tLL.jpg" alt="My Jaan">
+
+<div class="cake" id="cake" onclick="blow()">🎂</div>
+<small>Tap the cake & make a wish ✨</small>
+
+<div class="typing" id="typing"></div>
+
+<button onclick="surprise()">💝 One Last Thing</button>
+
+<footer>— From your Jaan 🤍</footer>
+</div>
+
+<script>
+/* Unlock */
+function unlock(){
+if(pass.value.toLowerCase()=="jaan"){
+lock.style.display="none";
+}
+}
+
+/* Music */
+function playMusic(){music.play()}
+
+/* Cake */
+function blow(){
+cake.innerHTML="🎂";
+cake.classList.add("candle-off");
+alert("Wish made 🤍 May Allah accept it ✨");
+}
+
+/* Typing Letter */
+const text=`To my jaan 💖
+
+শুভ জন্মদিন আমার দুনিয়া 🌸
+তুমি শুধু আমার ভালোবাসা না,
+তুমি আমার দোয়া,
+আমার শান্তি,
+আমার ঘর 🤍
+
+Every smile of yours
+is a blessing for my heart.
+Every tear of yours
+is my responsibility.
+
+May Allah keep you safe,
+happy, and loved always 🌙✨
+
+আমি আজীবন তোমারই 🤍`;
+
+let i=0;
+(function type(){
+if(i<text.length){
+typing.innerHTML+=text.charAt(i++);
+setTimeout(type,40);
+}
+})();
+
+/* Surprise */
+function surprise(){
+alert("No matter what… I choose you. Always 🤍");
+}
+
+/* Firework */
+function fire(e){
+let f=document.createElement("div");
+f.className="fire";
+f.style.left=e.clientX+"px";
+f.style.top=e.clientY+"px";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),600);
+}
+</script>
+
+</body>
+  </html>
